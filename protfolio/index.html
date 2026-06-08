@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-1404833974914664">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/jpeg" href="ai setu-photoaidcom-cropped.jpg">
+    <title>Setu Patel - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            scroll-behavior: smooth;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --bg-color: #080808;
+            --second-bg-color: #131313;
+            --text-color: white;
+            --main-color: #ff7b00;
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            /* Prevents horizontal scrollbars during animation */
+        }
+
+        /* --- Header Animation (Smooth Slide Down) --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: slideDown 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            /* Smoother easing */
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: var(--main-color);
+        }
+
+        span {
+            background: linear-gradient(270deg, orange 10%, red 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .navbar a {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
+            display: inline-block;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--main-color);
+            display: none;
+            cursor: pointer;
+        }
+
+        .gradient-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(270deg, orange 10%, red 100%);
+            border-radius: 4rem;
+            box-shadow: 0 0 1rem var(--main-color);
+            font-size: 1.6rem;
+            color: var(--second-bg-color);
+            letter-spacing: .1rem;
+            font-weight: 600;
+            transition: .5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Button Hover Effect (Smooth Fill) */
+        .gradient-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: -1;
+            transition: .5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gradient-btn:hover::before {
+            width: 100%;
+        }
+
+        .gradient-btn:hover {
+            box-shadow: 0 0 20px var(--main-color);
+            color: var(--main-color);
+            transform: translateY(-3px);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+        }
+
+        /* --- Home Section --- */
+        .home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .home-content {
+            max-width: 60rem;
+            z-index: 2;
+        }
+
+        .home-content h1 {
+            font-size: 5.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .home-content h3 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .home-content p {
+            font-size: 1.6rem;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+
+        .social-icon a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background: transparent;
+            border: .2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 2rem;
+            color: var(--main-color);
+            margin: 3rem 1.5rem 3rem 0;
+            transition: .5s ease;
+        }
+
+        .social-icon a:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 1rem var(--main-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* --- Floating Image Animation (Subtle) --- */
+        .hero-img img {
+            width: 35vw;
+            border-radius: 50%;
+            box-shadow: 0 0 25px var(--main-color);
+            cursor: pointer;
+            border: 5px solid var(--second-bg-color);
+            animation: floatImage 5s ease-in-out infinite;
+            /* Slower float */
+            transition: 0.4s;
+            z-index: 1;
+        }
+
+        @keyframes floatImage {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            /* Less movement for subtlety */
+        }
+
+        .hero-img img:hover {
+            box-shadow: 0 0 30px var(--main-color), 0 0 60px var(--main-color);
+        }
+
+        /* --- About Section --- */
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7rem;
+            background: var(--second-bg-color);
+        }
+
+        .about-img img {
+            width: 25vw;
+            border-radius: 50%;
+            box-shadow: 0 0 25px var(--main-color);
+            transition: .3s ease-in-out;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            font-size: 5rem;
+            text-align: left;
+        }
+
+        .about-content p {
+            font-size: 1.6rem;
+            margin: 2rem 0 3rem;
+            line-height: 1.6;
+        }
+
+        /* --- Services --- */
+        .services h2 {
+            font-size: 5rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-box {
+            background: var(--second-bg-color);
+            padding: 3rem 2rem;
+            border-radius: 2rem;
+            border: 2px solid var(--main-color);
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-align: center;
+        }
+
+        .service-box:hover {
+            background: var(--main-color);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 123, 0, 0.3);
+        }
+
+        .service-box:hover h4,
+        .service-box:hover p {
+            color: var(--bg-color);
+        }
+
+        .service-info h4 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-info p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* --- Projects (Image Zoom) --- */
+
+
+
+        .project {
+            background-color: var(--second-bg-color);
+            text-align: center;
+        }
+
+        .project h2 {
+            font-size: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .projects-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-color);
+            border: 2px solid var(--main-color);
+            border-radius: 2rem;
+            padding: 2rem *2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 123, 0, 0.4);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1rem;
+            transition: 0.5s ease;
+            /* Smooth zoom */
+        }
+
+        /* Image Zoom on Hover */
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-card h3 {
+            font-size: 2.5rem;
+        }
+
+        .project-card p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        /* --- Contact --- */
+        .contact {
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact form {
+            max-width: 70rem;
+            margin: 1rem auto;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact .input-box input,
+        .contact textarea {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: var(--second-bg-color);
+            border-radius: .8rem;
+            margin: .7rem 0;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .contact .input-box input {
+            width: 49%;
+        }
+
+        .contact .input-box input:focus,
+        .contact textarea:focus {
+            border: 2px solid var(--main-color);
+            background: var(--bg-color);
+        }
+
+        .contact textarea {
+            resize: none;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem 9%;
+            background: var(--second-bg-color);
+        }
+
+        .footer p {
+            font-size: 1.6rem;
+        }
+
+        .footer-iconTop a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: .8rem;
+            background: var(--main-color);
+            border-radius: .8rem;
+            transition: .5s ease;
+        }
+
+        .footer-iconTop a:hover {
+            box-shadow: 0 0 1rem var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-iconTop i {
+            font-size: 2.4rem;
+            color: var(--second-bg-color);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .header {
+                padding: 2rem 3%;
+            }
+
+            section {
+                padding: 10rem 3% 2rem;
+            }
+
+            .services {
+                padding: 7rem 3% 2rem;
+            }
+
+            .project {
+                padding: 7rem 3% 2rem;
+            }
+
+            .contact {
+                min-height: auto;
+            }
+
+            .footer {
+                padding: 2rem 3%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 3%;
+                background: var(--bg-color);
+                border-top: .1rem solid rgba(0, 0, 0, .2);
+                box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+                display: none;
+            }
+
+            .navbar.active {
+                display: block;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+
+            .home {
+                flex-direction: column;
+            }
+
+            .home-content h3 {
+                font-size: 2.6rem;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+
+            .home-content {
+                order: 2;
+                text-align: center;
+            }
+
+            .hero-img {
+                order: 1;
+                margin-bottom: 4rem;
+            }
+
+            .hero-img img {
+                width: 70vw;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about-img img {
+                width: 70vw;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .about-content h2 {
+                text-align: center;
+            }
+
+            .contact .input-box input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+
+            .home-content h1 {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    div
+
+
+    <header class="header">
+        <a href="#home" class="logo">Setu <span>Patel</span></a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#service">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display: flex; gap: 10px;" class="hide-mobile">
+            <a href="#contact" class="gradient-btn">Hire Me</a>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hello, It's</h3>
+            <h1>Setu Patel</h1>
+            <h3>And I'm a <span class="multiple-text"></span></h3>
+            <p>"I am an innovative Web Developer skilled in HTML, CSS, JavaScript , React and deployment tool . <br>I
+                define myself as an
+                'AI-Powered Developer,' utilizing cutting-edge AI tools to build robust websites."</p>
+
+            <div class="social-icon">
+                <a href="https://www.linkedin.com/in/setu-patel-9b1342360/" target="_blank"><i
+                        class='bx bxl-linkedin'></i></a>
+                <a href="https://www.instagram.com/setu_patel_7378/" target="_blank"><i
+                        class='bx bxl-instagram'></i></a>
+                <a href="#" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://github.com/Setu94275" target="_blank"><i class='bx bxl-github'></i></a>
+            </div>
+
+            <div class="btn-group" style="justify-content: left;">
+                <a href="#projects" class="gradient-btn">My Work</a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="ai setu.jpg" alt="Setu Patel Profile">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="ai setu.jpg" alt="About Image">
+        </div>
+        <div class="about-content">
+            <h2>About <span>Me</span></h2>
+            <h3>Web Developer & Student</h3>
+            <p>I am a passionate AI-Powered Web Developer and a Computer Science student at GH Patel College, Anand. I
+                specialize in building responsive, user-friendly websites that solve real-world problems. By combining
+                logical programming with creative design, I help businesses grow their online presence.</p>
+            <a href="#contact" class="gradient-btn">Let's Talk</a>
+        </div>
+    </section>
+
+    <section class="services" id="service">
+        <h2>My <span>Services</span></h2>
+        <div class="service-content">
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>Web Development</h4>
+                    <p>Creating responsive, high-performance websites using HTML, CSS, and JavaScript. From personal
+                        portfolios to business landing pages.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>AI Integration</h4>
+                    <p>Leveraging Artificial Intelligence tools to optimize code, enhance user experience, and implement
+                        smart features in web applications.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <h4> Billing Systems</h4>
+                    <p>Specialized solutions for farmers and shops, including billing software and crop tracking
+                        interfaces tailored to local needs.</p>
+                </div>
+            </div>
+            <div class=" service-box">
+            <div class="service-info">
+                <h4> AI Business Ads</h4>
+                <p>AI Business Ads
+                    Design engaging AI-generated advertisements for social media, products, and local businesses to
+                    boost sales and online presence.</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project" id="projects">
+        <h2>My <span>Projects</span></h2>
+
+        <div class="projects-box">
+
+            <div class="project-card">
+                <img src="shop image.png" alt="Brothers Outfit">
+                <h3>Clothing Shop</h3>
+                <p>A full-fledged e-commerce style website for a Men's clothing shop. Features a modern gallery,
+                    responsive design, and easy navigation.</p>
+                <a href="https://clothingshop1.netlify.app/" class="gradient-btn" target="_blank">View Site</a>
+            </div>
+
+            <div class="project-card">
+                <img src="student dashboard.png" alt="figma">
+                <h3>Student Management</h3>
+                <p>Student Management System – A web-based application designed to manage student records efficiently,
+                    including student information, attendance, academic details, and data organization through an
+                    intuitive dashboard.</p>
+                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7457678050168569857/" class="gradient-btn"
+                    target="_blank">View Site</a>
+            </div>
+            <div class="project-card">
+                <img src="farming analyst.png" alt="figma">
+                <h3>Farming Analyst</h3>
+                <p>Farming Analyst – A modern agriculture analytics platform that helps farmers make data-driven
+                    decisions using crop insights, market trends, and farming recommendations. Built with a responsive
+                    and user-friendly interface for easy access across devices.</p>
+                <a href="https://farminganalyst.netlify.app/" class="gradient-btn" target="_blank">View Site</a>
+            </div>
+            <div class="project-card">
+                <img src="project-2.png" alt="DogiPdf">
+                <h3>DogiPdf Toolkit</h3>
+                <p>A web-based PDF utility tool allowing users to merge and split PDFs directly in the browser. Built
+                    with HTML, CSS, and JS.</p>
+                <a href="https://dogipdfhub.github.io/DogiPdfToolkit/" class="gradient-btn" target="_blank">View
+                    Site</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project-3.png" alt="Mukund Agro">
+                <h3>Mukund Agro Seeds</h3>
+                <p>A billing and inventory display website for a pesticide and seed shop. Focuses on clear data
+                    presentation for customers.</p>
+                <a href="" class="gradient-btn" target="_blank">View Site</a>
+            </div>
+            <div class="project-card">
+                <img src="project-4.png" alt="figma">
+                <h3>Figma projects</h3>
+                <p>​To put my skills to the test, I created a web-based showcase of my top 6 Figma projects. It was a
+                    great challenge to make the layout responsive and ensure the embedded designs looked perfect on all
+                    devices.</p>
+                <a href="https://setufigmaproject.netlify.app/" class="gradient-btn" target="_blank">View Site</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Contact <span>Me</span></h2>
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number">
+                <input type="text" placeholder="Email Subject">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="gradient-btn">
+        </form>
+        <h3>Email: setupatel441@gmail.com</h3>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 by Patel Setu | All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+        /* --- Menu Toggle --- */
+        let menuIcon = document.querySelector('#menu-icon');
+        let navbar = document.querySelector('.navbar');
+
+        menuIcon.onclick = () => {
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        };
+
+        let navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuIcon.classList.remove('bx-x');
+                navbar.classList.remove('active');
+            });
+        });
+
+        /*==================== PROFESSIONAL SCROLL REVEAL ====================*/
+        ScrollReveal({
+            reset: true, // Animations repeat on scroll up/down
+            distance: '60px', // Distance elements move
+            duration: 2000,   // Slower, smoother duration
+            delay: 200,
+            easing: 'cubic-bezier(0.5, 0, 0, 1)' // Professional easing curve
+        });
+
+        /* --- Home Section Staggered Animation --- */
+        // Elements come in one by one for a professional look
+        ScrollReveal().reveal('.home-content h3:nth-child(1)', { origin: 'top', delay: 300 }); // "Hello It's"
+        ScrollReveal().reveal('.home-content h1', { origin: 'left', delay: 500, distance: '100px' }); // "Setu Patel"
+        ScrollReveal().reveal('.home-content h3:nth-child(3)', { origin: 'right', delay: 700 }); // "And I'm a..."
+        ScrollReveal().reveal('.home-content p', { origin: 'bottom', delay: 900 });
+        ScrollReveal().reveal('.social-icon, .btn-group', { origin: 'bottom', delay: 1100, interval: 200 }); // Buttons & Icons stagger
+        ScrollReveal().reveal('.hero-img', { origin: 'right', delay: 600, scale: 0.8 }); // Image zooms in slightly
+
+        /* --- General Section Headings --- */
+        ScrollReveal().reveal('.heading, h2 span', { origin: 'top' });
+
+        /* --- About Section --- */
+        ScrollReveal().reveal('.about-img', { origin: 'left' });
+        ScrollReveal().reveal('.about-content', { origin: 'right' });
+
+        /* --- Services & Projects (Sequence Animation) --- */
+        // 'interval' makes cards appear one after another
+        ScrollReveal().reveal('.service-box', { origin: 'bottom', interval: 200 });
+        ScrollReveal().reveal('.project-card', { origin: 'bottom', interval: 200 });
+
+        /* --- Contact Form --- */
+        ScrollReveal().reveal('.contact form', { origin: 'bottom' });
+
+
+        /*==================== TYPED JS ====================*/
+        const typed = new Typed('.multiple-text', {
+            strings: ['Web Developer', 'AI Enthusiast', 'Figma designer', 'Problem Solver',],
+            typeSpeed: 100,
+            backSpeed: 60,
+            backDelay: 1000,
+            loop: true
+        });
+    </script>
+</body>
+
+</html>
